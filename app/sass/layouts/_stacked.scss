@@ -30,9 +30,9 @@
  */
 $stacked-modifiers: (
   'large'   : $global-baseline * 4,
-  'med'     : $global-baseline * 3,
-  'normal'  : $global-baseline * 2,
-  'small'   : $global-baseline
+  'med'     : $global-baseline * 2,
+  'normal'  : $global-baseline,
+  'small'   : $global-baseline / 2
 );
 
 .l-stacked {

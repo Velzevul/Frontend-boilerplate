@@ -5,6 +5,7 @@
  *  with the following modifiers
  *    - collapsed
  *    - small
+ *    - med
  *    - large
  *
  *  .l-list
@@ -17,7 +18,8 @@
  *
  */
 $list-modifiers: (
-  'small'    : $global-baseline,
+  'small'    : $global-baseline / 2,
+  'med'      : $global-baseline * 2,
   'large'    : $global-baseline * 4,
   'collapsed': 0.1px
 );
@@ -25,12 +27,12 @@ $list-modifiers: (
 .l-list {
   margin: 0;
   padding: 0;
-  margin-bottom: - $global-baseline * 2;
+  margin-bottom: - $global-baseline;
   list-style: none;
 
   & > &__item {
     display: block;
-    margin-bottom: $global-baseline * 2;
+    margin-bottom: $global-baseline;
   }
 }
   @each $modifier-name, $modifier-margin in $list-modifiers {
@@ -46,15 +48,15 @@ $list-modifiers: (
 .l-list-inline {
   margin: 0;
   padding: 0;
-  margin-bottom: - $global-baseline * 2;
-  margin-left: - $global-baseline * 2;
+  margin-bottom: - $global-baseline;
+  margin-left: - $global-baseline;
   list-style: none;
 
   & > &__item {
     display: inline-block;
     vertical-align: top;
-    margin-bottom: $global-baseline * 2;
-    margin-left: $global-baseline * 2;
+    margin-bottom: $global-baseline;
+    margin-left: $global-baseline;
   }
 }
   @each $modifier-name, $modifier-margin in $list-modifiers {

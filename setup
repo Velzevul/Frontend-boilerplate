@@ -1,0 +1,71 @@
+#!/bin/bash
+
+
+#
+# Global Dependencies
+#
+
+echo "Checking global dependencies..."
+
+if ! [[ `which bower` ]]; then
+  echo "bower not found, installing bower globally via npm..."
+  npm install -g bower
+fi
+
+if ! [[ `which gulp` ]]; then
+  echo "gulp not found, installing gulp globally via npm..."
+  npm install -g gulp
+fi
+
+echo "All done!"
+
+
+#
+# Project
+#
+
+echo "Configuring project..."
+echo -n "Enter project name: "
+read projectname
+
+if [[ -f "bower.json" ]]; then
+  rm "bower.json"
+fi
+
+if [[ -f "package.json" ]]; then
+  rm "package.json"
+fi
+
+echo "{
+  \"name\": \"$projectname\"
+}" >> "bower.json"
+
+echo "{
+  \"name\": \"$projectname\",
+  \"scripts\": {
+    \"preinstall\": \"bundle\",
+    \"postinstall\": \"bower install\",
+    \"start\": \"gulp\"
+  }
+}" >> "package.json"
+
+npm_dependencies=(
+  gulp
+  gulp-compass
+  gulp-concat
+  gulp-connect
+  gulp-html2js
+  gulp-plumber
+  gulp-processhtml
+  gulp-util
+)
+
+bower_dependencies=(
+  angular
+)
+
+echo "installing npm dependencies..."
+npm install --save ${npm_dependencies[@]}
+bower install --save ${bower_dependencies[@]}
+
+exit 0
