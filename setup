@@ -7,17 +7,26 @@
 
 echo "Checking global dependencies..."
 
+if ! [[ `which bundle` ]]; then
+  echo "Command 'bundle' not found. Please, install 'Bundler' gem first:"
+  echo "  gem install bundler"
+
+  exit 1
+fi
+
 if ! [[ `which bower` ]]; then
-  echo "bower not found, installing bower globally via npm..."
-  npm install -g bower
+  echo "Command 'bower' not found. Please install 'Bower' first:"
+  echo "  npm install bower -g"
+  
+  exit 1
 fi
 
 if ! [[ `which gulp` ]]; then
-  echo "gulp not found, installing gulp globally via npm..."
-  npm install -g gulp
-fi
+  echo "Command 'gulp' not found. Please install 'Gulp' first:"
+  echo "  npm install gulp -g"
 
-echo "All done!"
+  exit 1
+fi
 
 
 #
@@ -64,8 +73,10 @@ bower_dependencies=(
   angular
 )
 
-echo "installing npm dependencies..."
+echo "installing dependencies..."
 npm install --save ${npm_dependencies[@]}
 bower install --save ${bower_dependencies[@]}
+
+npm install
 
 exit 0
