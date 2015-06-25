@@ -1,0 +1,28 @@
+/**
+ *  RESPONSIVE EMBED LAYOUT
+ *
+ *  layout for fluid embedded iframes.
+ *  read more here:
+ *    https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php
+ *  and here:
+ *    http://www.alistapart.com/articles/creating-intrinsic-ratios-for-video/
+ *
+ *  .responsive-embed
+ *    &__iframe
+ *
+ */
+
+.l-responsive-embed {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+
+  &__iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
