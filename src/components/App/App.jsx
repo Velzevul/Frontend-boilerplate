@@ -1,8 +1,7 @@
 import React from 'react'
 
-import styles from './App.scss'
+import styles from './App.css'
 import img from './img.jpg'
-import RaisedButton from 'material-ui/RaisedButton';
 
 const App = () => {
   return (
@@ -12,10 +11,6 @@ const App = () => {
       <div>
         <img src={img} />
       </div>
-      <RaisedButton label="Default" />
-      <RaisedButton label="Primary" primary />
-      <RaisedButton label="Secondary" secondary />
-      <RaisedButton label="Disabled" disabled />
     </div>
   )
 }

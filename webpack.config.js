@@ -4,8 +4,8 @@ const path = require('path')
 const webpack = require('webpack')
 const pkg = require('./package.json')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const cssFont = require('postcss-font-magician')
-const autoprefixer = require('autoprefixer')
+const cssImport = require('postcss-import')
+const cssNext = require('postcss-cssnext')
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 const PATHS = {
@@ -67,8 +67,8 @@ const config = {
         include: PATHS.src
       },
       {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css??sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass'),
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss'),
         include: PATHS.src
       }
     ]
@@ -77,7 +77,10 @@ const config = {
   devtool: NODE_ENV === 'production' ? 'source-map' : 'cheap-inline-module-source-map',
   watch: NODE_ENV === 'development',
   postcss: () => {
-    return [ cssFont(), autoprefixer ]
+    return [
+      cssImport({ addDependencyTo: webpack }),
+      cssNext()
+    ]
   }
 }
 
